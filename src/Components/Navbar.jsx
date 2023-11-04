@@ -1,7 +1,10 @@
 
+import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
 
     const Links = <>
         <li className="text-base"><NavLink
@@ -39,6 +42,15 @@ const Navbar = () => {
 
     </>
 
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(() => {
+
+            })
+    }
 
     return (
         <div className="navbar bg-purple-200 shadow-lg px-[5%]">
@@ -60,21 +72,21 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2">
-                <Link to="/login"><button className="btn  btn-outline btn-sm">Login</button></Link>
-                {/* {
-                user ?
 
-                    <div className="dropdown dropdown-bottom dropdown-end">
-                        <label tabIndex={0} ><img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" /></label>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box lg:w-52">
-                            <p className="font-semibold">{user.displayName}</p>
-                            <Link><button onClick={handleLogOut} className="btn  btn-outline btn-sm">Sign out</button></Link>
-                        </ul>
-                    </div>
+                {
+                    user ?
 
-                    :
-                    <Link to="/login"><button className="btn  btn-outline btn-sm">Login</button></Link>
-            } */}
+                        <div className="dropdown dropdown-bottom dropdown-end">
+                            <label tabIndex={0} ><img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" /></label>
+                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box lg:w-52">
+                                <p className="font-semibold">{user.displayName}</p>
+                                <Link><button onClick={handleLogOut} className="btn  btn-outline btn-sm">Sign out</button></Link>
+                            </ul>
+                        </div>
+
+                        :
+                        <Link to="/login"><button className="btn  btn-outline btn-sm">Login</button></Link>
+                }
 
 
 

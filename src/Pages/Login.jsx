@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../AuthProvider/AuthProvider';
+
+import { Link, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import { useContext } from 'react';
 
 const Login = () => {
     const {signInUser,user,googleLogin} = useContext(AuthContext)
     console.log(user);
-  
+    const navigate = useNavigate()
       const handleLogin = (e) =>{
           e.preventDefault();
           const email = e.target.email.value     
@@ -20,7 +22,7 @@ const Login = () => {
           
               swal("Logged", "You login successfully", "success");
               e.target.reset()
-              
+              navigate("/")
             
              })
              .catch(()=>{
