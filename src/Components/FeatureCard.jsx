@@ -1,7 +1,7 @@
 
 
 const FeatureCard = ({ feature }) => {
-    console.log(feature);
+    // console.log(feature);
     const {image,title,description} = feature||{};
     return (
         <div className="card bg-neutral text-neutral-content">
