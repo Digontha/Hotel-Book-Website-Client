@@ -24,7 +24,7 @@ const RoomCard = ({ room }) => {
                 <button
                     className="btn btn-outline btn-neutral"
                 >
-                   Book now
+                   Details
                 </button>
             </div>
         </div>
