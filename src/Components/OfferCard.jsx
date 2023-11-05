@@ -10,11 +10,11 @@ const OfferCard = ({ offer }) => {
                     <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
                 </div>
 
-                <div className="relative w-[500px] p-6 px-6  md:px-12">
+                <div className="relative lg:w-[500px] p-6 px-6  md:px-12">
                     <h2 className="mb-6  text-white font-sans  font-extrabold leading-[1.5] tracking-normal  antialiased">
-                        <span className='underline text-yellow-100 text-2xl'>{title + " Special"}</span>
+                        <span className='underline text-yellow-100 lg:text-2xl'>{title + " Special"}</span>
                         <br />
-                        <small className='text-base'>{description}</small>
+                        <small className='lg:text-base '>{description}</small>
                     </h2>
                     
                 </div>
