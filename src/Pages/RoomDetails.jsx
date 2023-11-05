@@ -1,5 +1,5 @@
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import swal from 'sweetalert';
@@ -7,8 +7,9 @@ import swal from 'sweetalert';
 
 const RoomDetails = () => {
     const rooms = useLoaderData()
-   const {user} = useContext(AuthContext)
-   const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const [date,setDate]=useState(null)
     const { room_name,
         room_description,
         price_per_night,
@@ -45,15 +46,32 @@ const RoomDetails = () => {
                                 <p className='font-bold text-lg'><span className='font-bold text-xl underline'>Room Size:</span> {room_size}</p>
                                 <p><span className='font-bold text-xl underline'>special offers:</span> <span className='w-[50%]'>{special_offers}</span></p>
                                 <p className='font-bold text-lg'><span className='font-bold text-xl underline'>Price:</span> ${price_per_night}</p>
-                                 <input className='text-black font-medium p-4 rounded-2xl' type="date" name="" id="" />
-                                    <div className="card-actions ">
+                                <input onChange={(e)=>setDate(e.target.value)} className='text-black font-medium p-4 rounded-2xl' type="date" name="" id="" />
 
-                                        {availability === "available" ? <button onClick={handleBookNowClick} className="btn w-full btn-success btn-outline">Book now</button> :
-                                            <button className="w-full  disabled">room not available</button>
-                                        }
-
+                                {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                                <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>Booking Summary</button>
+                                <dialog id="my_modal_3" className="modal">
+                                    <div className="modal-box text-slate-900">
+                                        <form method="dialog">
+                                            {/* if there is a button in form, it will close the modal */}
+                                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                        </form>
+                                        <img src={room_image1} alt="" />
+                                        <h3 className="font-bold text-lg">{room_name}</h3>
+                                        <p className="py-4">Price: ${price_per_night}</p>
+                                        <p className='w-full'>Date:{date? <p>{date}</p>:<p>Please select date</p>}</p>
                                     </div>
-                              
+                                </dialog>
+
+
+                                <div className="card-actions ">
+
+                                    {availability === "available" ? <button onClick={handleBookNowClick} className="btn w-full btn-success btn-outline">Book now</button> :
+                                        <button className="w-full  disabled">room not available</button>
+                                    }
+
+                                </div>
+
 
                             </div>
                         </div>
