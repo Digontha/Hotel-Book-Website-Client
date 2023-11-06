@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BookingCard = ({ booking }) => {
     console.log(booking);
@@ -25,16 +26,16 @@ const BookingCard = ({ booking }) => {
                     Email
                 </th>
                 <th className="p-2">
-                    {/* Empty Header Cell */}
+                 
                 </th>
             </tr>
         </thead>
         <tbody>
-            {/* row 1 */}
+          
             <tr>
                 <td className="p-2">
                     <button className="btn btn-sm btn-outline mr-3">Delete</button>
-                    <button className="btn btn-sm btn-outline">Update</button>
+                   <Link to="/update"> <button className="btn btn-sm btn-outline">Update Date</button></Link>
                 </td>
                 <td className="p-2 sm:hidden">
                     <div className="font-bold">{room_name}</div>
@@ -47,7 +48,7 @@ const BookingCard = ({ booking }) => {
                 <td className="p-2 hidden sm:table-cell">{date}</td>
                 <td className="p-2 hidden sm:table-cell">{email}</td>
                 <td className="p-2">
-                    {/* Empty Cell */}
+                   
                 </td>
             </tr>
         </tbody>
