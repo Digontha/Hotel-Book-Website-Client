@@ -9,6 +9,7 @@ import RoomDetails from "../Pages/RoomDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Update from "../Pages/Update";
 
+
 const router = createBrowserRouter([
     {
       path: "/",
@@ -43,7 +44,8 @@ const router = createBrowserRouter([
         {
             path:"/register",
             element:<Register></Register>
-        }
+        },
+        
       ]
     },
   ]);

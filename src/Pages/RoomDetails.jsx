@@ -45,8 +45,8 @@ const RoomDetails = () => {
 
     return (
         <>
-            <div className=' flex justify-center gap-10 mt-8'>
-                <div className='w-[50%] h-full'>
+            <div className=' lg:flex justify-center gap-10 mt-8'>
+                <div className='lg:w-[50%] h-full'>
                     <img className='rounded-xl' src={room_image1} alt="" />
 
                     <div className='mt-10'>
