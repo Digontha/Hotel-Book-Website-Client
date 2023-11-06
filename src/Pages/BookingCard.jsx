@@ -1,9 +1,10 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
-const BookingCard = ({ booking }) => {
+const BookingCard = ({ booking ,handleDelete}) => {
     console.log(booking);
-    const { room_name, price_per_night, email, date } = booking || {};
+   
+    const { room_name, price_per_night, email, date ,_id} = booking || {};
     return (
         <>
 <div className="w-full overflow-x-auto">
@@ -34,8 +35,8 @@ const BookingCard = ({ booking }) => {
           
             <tr>
                 <td className="p-2">
-                    <button className="btn btn-sm btn-outline mr-3">Delete</button>
-                   <Link to="/update"> <button className="btn btn-sm btn-outline">Update Date</button></Link>
+                    <button onClick={()=>handleDelete(_id)} className="btn btn-sm btn-outline mr-3">Delete</button>
+                   <Link to={`/bookings/update/${_id}`}> <button className="btn btn-sm btn-outline">Update Date</button></Link>
                 </td>
                 <td className="p-2 sm:hidden">
                     <div className="font-bold">{room_name}</div>
