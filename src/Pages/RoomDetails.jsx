@@ -38,7 +38,7 @@ const RoomDetails = () => {
 
             swal("Booked", "You book successfully", "success");
         } else {
-            // User is not authenticated, redirect to the login page
+            
             navigate('/login');
         }
     };

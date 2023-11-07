@@ -10,6 +10,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Update from "../Pages/Update";
 import ErrorPage from "../Pages/ErrorPage";
 import About from "../Pages/About";
+import Contact from "../Pages/Contact";
 
 
 const router = createBrowserRouter([
@@ -23,8 +24,12 @@ const router = createBrowserRouter([
             element:<Home></Home>
         },
         {
-            path:"about",
+            path:"/about",
             element:<About></About>
+        },
+        {
+            path:"/contact",
+            element:<Contact></Contact>
         },
         {
             path:"/rooms",
