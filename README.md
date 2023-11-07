@@ -1,8 +1,7 @@
-# React + Vite
+- live site link: https://assignment-11-b9aa0.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ The project I created is a Hotel Service website. A hotel that carries a variety of rooms.
+- Firstly, my projector has a login and registration system through which users can login and register.
+- Thirdly I have an rooms route where the user can see rooms and rooms details of their choice.
+- Fourthly I have a bookings list where user can see their booking hotels.
+- Fifth I have an update date button where users can update their booking date.

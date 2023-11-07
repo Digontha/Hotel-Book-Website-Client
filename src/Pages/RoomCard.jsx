@@ -10,7 +10,7 @@ const RoomCard = ({ room }) => {
         .then(res => setReview(res.data))
         console.log(_id);
     },[_id])
-    
+
     return (
         <Link to={`/details/${_id}`}>
             <div className="relative flex flex-col text-gray-700 bg-white shadow-md  rounded-xl bg-clip-border">
