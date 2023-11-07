@@ -69,19 +69,22 @@ const RoomDetails = () => {
                                         </form>
                                         <img src={room_image1} alt="" />
                                         <h3 className="font-bold text-lg">{room_name}</h3>
-                                        <p className="py-4">Price: ${price_per_night}</p>
+                                        <p className="py-4">Total Price: ${price_per_night}</p>
                                         <p className='w-full'>Date:{date ? <p>{date}</p> : <p>Please select date</p>}</p>
                                     </div>
                                 </dialog>
 
 
-                                <div className="card-actions ">
+                               {
+                                date? <div className="card-actions ">
 
-                                    {availability === "available" ? <button onClick={handleBookNowClick} className="btn w-full btn-success btn-outline">Book now</button> :
-                                        <button className="w-full  disabled">room not available</button>
-                                    }
+                                {availability === "available" ? <button onClick={handleBookNowClick} className="btn w-full btn-success btn-outline">Book now</button> :
+                                    <button className="w-full  disabled">Sorry,room not available</button>
+                                }
 
-                                </div>
+                            </div>:
+                            <button className="btn w-full btn-success btn-outline font-extrabold">Please select date</button>
+                               }
 
 
                             </div>
