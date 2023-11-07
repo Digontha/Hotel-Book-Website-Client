@@ -1,12 +1,18 @@
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import swal from 'sweetalert';
 import axios from 'axios';
+import Reviews from './Reviews';
 
 
 const RoomDetails = () => {
+
+
+    const [posts, setPosts] = useState([])
+
+
     const rooms = useLoaderData()
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -20,28 +26,50 @@ const RoomDetails = () => {
         room_image1,
         room_image2,
         room_image3,
-        room_image4 } = rooms || {};
+        room_image4, _id } = rooms || {};
 
     console.log(room_name);
 
     const handleBookNowClick = () => {
         if (user) {
             const data = {
-                    room_name,
-                    room_image1,
-                    price_per_night,
-                    date,
-                    email:user.email
+                room_name,
+                room_image1,
+                price_per_night,
+                date,
+                email: user?.email
             }
-            axios.post(`http://localhost:5000/bookings`,data)
+            axios.post(`http://localhost:5000/bookings`, data)
                 .then(res => console.log(res.data))
 
             swal("Booked", "You book successfully", "success");
+
         } else {
-            
+
             navigate('/login');
         }
     };
+
+    const handleReview = (e) => {
+        e.preventDefault();
+        const userReview = e.target.review.value
+
+        const reviewData = {
+            userReview,
+            room_id: _id
+        }
+
+        axios.post("http://localhost:5000/reviews", reviewData)
+            .then(res => console.log(res.data))
+        swal("Review", "You review send successfully", "success");
+        e.target.reset()
+    }
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/reviews/${_id}`)
+            .then(res => setPosts(res.data))
+        console.log(_id);
+    }, [_id])
 
     return (
         <>
@@ -75,16 +103,16 @@ const RoomDetails = () => {
                                 </dialog>
 
 
-                               {
-                                date? <div className="card-actions ">
+                                {
+                                    date ? <div className="card-actions ">
 
-                                {availability === "available" ? <button onClick={handleBookNowClick} className="btn w-full btn-success btn-outline">Book now</button> :
-                                    <button className="w-full  disabled">Sorry,room not available</button>
+                                        {availability === "available" ? <button onClick={handleBookNowClick} className="btn w-full btn-success btn-outline">Book now</button> :
+                                            <button className="w-full  disabled">Sorry,room not available</button>
+                                        }
+
+                                    </div> :
+                                        <button className="btn w-full btn-success btn-outline font-extrabold">Please select date</button>
                                 }
-
-                            </div>:
-                            <button className="btn w-full btn-success btn-outline font-extrabold">Please select date</button>
-                               }
 
 
                             </div>
@@ -97,6 +125,23 @@ const RoomDetails = () => {
                     <img className='w-96 mb-4 rounded-lg' src={room_image3} alt="" />
                     <img className='w-96 mb-4 rounded-lg' src={room_image4} alt="" />
                 </div>
+
+                {user ?
+                    <form onSubmit={handleReview}>
+                        <input placeholder='Your Review' name='review' className='p-5 bg-slate-300 border-4 rounded-lg mb-4 border-black' type="text" />
+                        <br />
+                        <input className='btn btn-neutral btn-outline' type="submit" value="Post" />
+
+                        <>
+                            <p className="underline text-xl mb-3 mt-3">reviews:</p>
+                            {posts.map(post => <Reviews key={post._id} post={post}></Reviews>)}
+                        </>
+
+
+                    </form>
+                    :
+                    navigate("/login")
+                }
             </div>
 
 

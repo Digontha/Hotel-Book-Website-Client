@@ -1,9 +1,16 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const RoomCard = ({ room }) => {
     const { price_per_night, room_name, room_image1,_id } = room || {};
-
+    const [review,setReview]=useState([])
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/reviews/${_id}`)
+        .then(res => setReview(res.data))
+        console.log(_id);
+    },[_id])
+    
     return (
         <Link to={`/details/${_id}`}>
             <div className="relative flex flex-col text-gray-700 bg-white shadow-md  rounded-xl bg-clip-border">
@@ -20,6 +27,9 @@ const RoomCard = ({ room }) => {
                     </h5>
                     <p className="block font-sans font-bold text-base antialiased  leading-relaxed text-inherit">
                         Price: ${price_per_night}
+                    </p>
+                    <p className="block font-sans font-bold text-base antialiased  leading-relaxed text-inherit">
+                        review:{review?.length}
                     </p>
                 </div>
                 
