@@ -8,16 +8,23 @@ import MyBooking from "../Pages/MyBooking";
 import RoomDetails from "../Pages/RoomDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Update from "../Pages/Update";
+import ErrorPage from "../Pages/ErrorPage";
+import About from "../Pages/About";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
       element:<Root></Root>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
             path:"/",
             element:<Home></Home>
+        },
+        {
+            path:"about",
+            element:<About></About>
         },
         {
             path:"/rooms",

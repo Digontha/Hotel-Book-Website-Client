@@ -15,6 +15,14 @@ const Navbar = () => {
         >
             Home
         </NavLink></li>
+        <li className="text-xl text-yellow-50"><NavLink
+            to="/about"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "underline font-extrabold " : ""
+            }
+        >
+            About us
+        </NavLink></li>
 
 
         <li className="text-xl text-yellow-50">
