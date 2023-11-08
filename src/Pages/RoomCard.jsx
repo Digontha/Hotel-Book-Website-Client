@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 const RoomCard = ({ room }) => {
     const { price_per_night, room_name, room_image1,_id } = room || {};
     const [review,setReview]=useState([])
+
     useEffect(()=>{
-        axios.get(`http://localhost:5000/reviews/${_id}`)
+        axios.get(`https://assignment-11-server-eight-lake.vercel.app/reviews/${_id}`)
         .then(res => setReview(res.data))
         console.log(_id);
     },[_id])

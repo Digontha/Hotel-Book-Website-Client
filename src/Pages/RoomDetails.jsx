@@ -12,6 +12,7 @@ const RoomDetails = () => {
 
     const [posts, setPosts] = useState([])
 
+    const [comment, setComment] = useState(false)
 
     const rooms = useLoaderData()
     const { user } = useContext(AuthContext)
@@ -39,8 +40,9 @@ const RoomDetails = () => {
                 date,
                 email: user?.email
             }
-            axios.post(`http://localhost:5000/bookings`, data)
+            axios.post(`https://assignment-11-server-eight-lake.vercel.app/bookings`, data)
                 .then(res => console.log(res.data))
+            setComment(true)
 
             swal("Booked", "You book successfully", "success");
 
@@ -59,14 +61,14 @@ const RoomDetails = () => {
             room_id: _id
         }
 
-        axios.post("http://localhost:5000/reviews", reviewData)
+        axios.post("https://assignment-11-server-eight-lake.vercel.app/reviews", reviewData)
             .then(res => console.log(res.data))
         swal("Review", "You review send successfully", "success");
         e.target.reset()
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/reviews/${_id}`)
+        axios.get(`https://assignment-11-server-eight-lake.vercel.app/reviews/${_id}`)
             .then(res => setPosts(res.data))
         console.log(_id);
     }, [_id])
@@ -88,19 +90,22 @@ const RoomDetails = () => {
                                 <input onChange={(e) => setDate(e.target.value)} className='text-black font-medium p-4 rounded-2xl' type="date" name="" id="" />
 
 
-                                <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>Booking Summary</button>
-                                <dialog id="my_modal_3" className="modal">
-                                    <div className="modal-box text-slate-900">
-                                        <form method="dialog">
+                                {date && <>
+                                    <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>Booking Summary</button>
+                                    <dialog id="my_modal_3" className="modal">
+                                        <div className="modal-box text-slate-900">
+                                            <form method="dialog">
 
-                                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                        </form>
-                                        <img src={room_image1} alt="" />
-                                        <h3 className="font-bold text-lg">{room_name}</h3>
-                                        <p className="py-4">Total Price: ${price_per_night}</p>
-                                        <p className='w-full'>Date:{date ? <p>{date}</p> : <p>Please select date</p>}</p>
-                                    </div>
-                                </dialog>
+                                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                            </form>
+                                            <img src={room_image1} alt="" />
+                                            <h3 className="font-bold text-lg">{room_name}</h3>
+                                            <p className="py-4">Total Price: ${price_per_night}</p>
+                                            <p className='w-full'>Date:{date ? <p>{date}</p> : <p>Please select date</p>}</p>
+                                        </div>
+                                    </dialog>
+                                </>
+                                }
 
 
                                 {
@@ -126,7 +131,7 @@ const RoomDetails = () => {
                     <img className='w-96 mb-4 rounded-lg' src={room_image4} alt="" />
                 </div>
 
-                {user ?
+                {comment &&
                     <form onSubmit={handleReview}>
                         <input placeholder='Your Review' name='review' className='p-5 bg-slate-300 border-4 rounded-lg mb-4 border-black' type="text" />
                         <br />
@@ -139,8 +144,7 @@ const RoomDetails = () => {
 
 
                     </form>
-                    :
-                    navigate("/login")
+
                 }
             </div>
 

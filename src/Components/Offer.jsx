@@ -6,7 +6,7 @@ const Offer = () => {
     const [offers, setOffers] = useState([])
     console.log(offers);
     useEffect(() => {
-        axios.get("http://localhost:5000/offer")
+        axios.get("https://assignment-11-server-eight-lake.vercel.app/offer")
             .then(res => setOffers(res.data))
     }, [])
     return (

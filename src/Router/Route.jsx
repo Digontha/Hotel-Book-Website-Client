@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         {
             path:"/details/:id",
             element:<RoomDetails></RoomDetails>,
-            loader:({params})=>fetch(`http://localhost:5000/details/${params.id}`)
+            loader:({params})=>fetch(`https://assignment-11-server-eight-lake.vercel.app/details/${params.id}`)
         },
         {
             path:"myBooking",
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         {
             path:"/bookings/update/:id",
             element:<Update></Update>,
-            loader:({params})=>fetch(`http://localhost:5000/bookings/update/${params.id}`)
+            loader:({params})=>fetch(`https://assignment-11-server-eight-lake.vercel.app/bookings/update/${params.id}`)
         },
         {
             path:'/login',

@@ -11,7 +11,7 @@ const MyBooking = () => {
     const { user } = useContext(AuthContext)
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/bookings?email=${user?.email}`,{withCredentials:true})
+        axios.get(`https://assignment-11-server-eight-lake.vercel.app/bookings?email=${user?.email}`,{withCredentials:true})
             .then(res => setBookings(res.data))
     }, [user.email])
 
@@ -28,7 +28,7 @@ const MyBooking = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/bookings/update/${_id}`, {
+                fetch(`https://assignment-11-server-eight-lake.vercel.app/bookings/update/${_id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

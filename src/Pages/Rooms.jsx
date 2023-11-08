@@ -12,7 +12,7 @@ const Rooms = () => {
 
     console.log(rooms);
     useEffect(() => {
-        axios.get(`http://localhost:5000/rooms?sortField=price_per_night&sortOrder=${price}`)
+        axios.get(`https://assignment-11-server-eight-lake.vercel.app/rooms?sortField=price_per_night&sortOrder=${price}`)
             .then(res => setRooms(res.data))
     }, [price])
     return (

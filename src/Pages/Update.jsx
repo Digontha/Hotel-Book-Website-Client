@@ -28,7 +28,7 @@ const Update = () => {
             newDate
         }
         
-        fetch(`http://localhost:5000/bookings/update/${_id}`, {
+        fetch(`https://assignment-11-server-eight-lake.vercel.app/bookings/update/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
