@@ -5,3 +5,11 @@
 - Thirdly I have an rooms route where the user can see rooms and rooms details of their choice.
 - Fourthly I have a bookings list where user can see their booking hotels.
 - Fifth I have an update date button where users can update their booking date.
+
+  # Technology and Tools
+  - React js
+  - JS
+  - Express js
+  - Node js
+  - Mongodb
+  - Firebase
